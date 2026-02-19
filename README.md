@@ -100,6 +100,40 @@ This lab replicates real-world enterprise security infrastructure to develop and
 
 ---
 
+### Okta Identity Platform
+
+**Tenant Configuration:**
+- Cloud-based identity management (Okta trial tenant)
+- Administrator role with full IAM privileges
+- Multi-factor authentication enabled
+
+**User Lifecycle Management:**
+- Created and managed 6 user accounts
+- Configured user activation and password policies
+- Implemented onboarding workflows
+
+**Group-Based Access Control:**
+- Deployed 3 custom security groups:
+  - `Finance-Team` - Financial systems access
+  - `Engineering-Team` - Development resources access
+  - `IT-Admins` - Privileged administrative access
+- Configured group descriptions and membership rules
+
+**Authentication & Security:**
+- Multi-factor authentication with multiple factors:
+  - Email authentication
+  - Google Authenticator
+  - Okta Verify (mobile app)
+- Password policies and account lockout protection
+
+**Key Concepts Demonstrated:**
+- User lifecycle (activation, provisioning, deprovisioning)
+- Role-Based Access Control (RBAC) via groups
+- Multi-Factor Authentication (MFA) configuration
+- Identity provider administration
+- Okta Admin Console navigation and management
+
+---
 ## 🛡️ Security Operations Center (SOC) Lab
 
 ### Detection Pipeline Architecture
