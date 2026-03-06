@@ -1,5 +1,3 @@
-# cybersecurity-lab
-IAM &amp; SOC Security Lab - Identity Management, SIEM, and Automated Security Operations
 # IAM & SOC Security Lab
 
 **Identity and Access Management | Security Operations | Threat Detection**
@@ -44,6 +42,11 @@ This lab replicates real-world enterprise security infrastructure to develop and
 ┌─────────────────────────────────────────────────────────────┐
 │              Microsoft Azure AD / Entra ID                  │
 │  (Identity Governance | User Lifecycle | Security Groups)   │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│                    Okta Identity Platform                   │
+│   (User Provisioning | MFA | Authentication Policies)       │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
@@ -98,13 +101,34 @@ This lab replicates real-world enterprise security infrastructure to develop and
 - Zero Trust security model foundations
 - Compliance audit support (access documentation)
 
+### Visual Documentation - Azure AD
+
+**User Management:**
+![Azure AD Users](screenshots/azure-users.png)
+*Figure 1: User accounts configured with proper UPN conventions and Member account types*
+
+**Group-Based Access Control:**
+![Security Groups](screenshots/azure-groups.png)
+*Figure 2: Security groups with role-based membership assignments*
+
+**Security Controls:**
+![Security Defaults Enabled](screenshots/security-defaults.png)
+*Figure 3: Security Defaults enabled for baseline MFA enforcement*
+
+**Monitoring and Compliance:**
+![Sign-in Logs](screenshots/signin-logs.png)
+*Figure 4: Sign-in log monitoring for authentication anomalies*
+
+![Audit Logs](screenshots/audit-logs.png)
+*Figure 5: Audit log tracking for access changes and compliance*
+
 ---
 
 ### Okta Identity Platform
 
 **Tenant Configuration:**
 - Cloud-based identity management (Okta trial tenant)
-- Administrator role with full IAM privileges  
+- Administrator role with full IAM privileges
 - Domain: zohomail-trial-1250230.okta.com
 - Multi-factor authentication enabled enterprise-wide
 
@@ -145,16 +169,54 @@ This lab replicates real-world enterprise security infrastructure to develop and
 - SSO and federation concepts
 - Application governance and access management
 
-**Okta vs Azure AD Comparison:**
-Through hands-on work with both platforms, I've developed understanding of:
-- Platform-specific terminology (Authentication Policies vs Conditional Access)
-- Different approaches to MFA enforcement
-- Application integration models (Okta App Catalog vs Azure Enterprise Apps)
-- Group management paradigms
-- Licensing and feature tier differences
-- When to recommend each platform based on organizational needs
+### Visual Documentation - Okta
+
+**Okta User Management:**
+![Okta Users](screenshots/okta-users.png)
+*Figure 6: User accounts in Okta with activation status and lifecycle management*
+
+**Okta Group-Based Access Control:**
+![Okta Groups](screenshots/okta-groups.png)
+*Figure 7: Security groups with role-based membership and descriptions*
+
+**Okta Multi-Factor Authentication:**
+![Okta Authenticators](screenshots/okta-authenticators.png)
+*Figure 8: MFA authenticators configured enterprise-wide (Email, Google Auth, Okta Verify)*
 
 ---
+
+## 🔄 Multi-Platform IAM Knowledge
+
+### Azure AD vs Okta - Hands-On Comparison
+
+Having implemented both platforms, I understand their complementary strengths:
+
+**Azure AD/Entra ID Strengths:**
+- Native integration with Microsoft 365 and Azure services
+- Hybrid identity with on-premises Active Directory
+- Conditional Access for granular policy control
+- Strong device management capabilities (Intune integration)
+- Cost-effective for Microsoft-centric organizations
+
+**Okta Strengths:**
+- Platform-agnostic (works with any cloud provider)
+- Extensive pre-built application integrations (7000+ apps)
+- Advanced lifecycle management automation
+- Workflow engine for custom provisioning logic
+- Strong API-first architecture for custom integrations
+
+**Common IAM Principles Across Both:**
+- User lifecycle management (Joiner/Mover/Leaver)
+- Group-based RBAC and least privilege
+- MFA and adaptive authentication
+- Policy-based access control
+- Compliance audit support and logging
+- SSO and federation capabilities
+
+This cross-platform experience allows me to recommend the right identity solution based on organizational needs, or support multi-vendor IAM architectures common in large enterprises.
+
+---
+
 ## 🛡️ Security Operations Center (SOC) Lab
 
 ### Detection Pipeline Architecture
@@ -233,7 +295,8 @@ Through hands-on work with both platforms, I've developed understanding of:
 - Security automation (SOAR concepts)
 
 ### Technical Platforms
-- **Cloud:** Microsoft Azure, Azure AD/Entra ID
+- **Cloud IAM Platforms:** Microsoft Azure AD/Entra ID, Okta
+- **Cloud Infrastructure:** Microsoft Azure
 - **SIEM:** Wazuh, Splunk, OSSIM (previous experience)
 - **Automation:** n8n workflow engine
 - **Operating Systems:** Linux (Ubuntu, Kali), Windows
@@ -254,7 +317,7 @@ Through hands-on work with both platforms, I've developed understanding of:
 ### IAM Security Scenarios
 
 **1. User Onboarding:**
-- Create new user account in Azure AD
+- Create new user account in Azure AD/Okta
 - Assign to appropriate security group based on role
 - Configure MFA requirements
 - Provision access to necessary resources
@@ -320,17 +383,17 @@ Through hands-on work with both platforms, I've developed understanding of:
 
 **Planned Additions:**
 
-**IAM-Specific Enhancements:**
-- [ ] Configure Okta-Azure AD integration for hybrid identity scenarios
-- [ ] Implement SCIM (System for Cross-domain Identity Management) auto-provisioning
-- [ ] Create custom Okta workflows for automated user lifecycle events
-- [ ] Deploy Password Synchronization between platforms
-- [ ] Implement risk-based authentication policies in both platforms
-- [ ] Configure identity federation between Azure AD and Okta
-- [ ] Build identity analytics dashboard correlating events across both platforms
+**IAM:**
+- [ ] Integrate Azure AD with on-premises Active Directory (hybrid identity)
+- [ ] Configure Okta-Azure AD integration for multi-platform identity scenarios
+- [ ] Implement Single Sign-On (SSO) with SAML applications
+- [ ] Create automated user provisioning workflows with API integration
+- [ ] Deploy Privileged Access Management (PAM) controls
+- [ ] Implement Just-In-Time (JIT) access workflows
+- [ ] Configure SCIM (System for Cross-domain Identity Management) auto-provisioning
+- [ ] Build identity analytics dashboard correlating events across platforms
 - [ ] Implement birthright access rules based on user attributes
 - [ ] Create automated access certification campaigns
-- [ ] Deploy privileged session management and recording
 
 **SOC:**
 - [ ] Add EDR (Endpoint Detection and Response) capabilities
@@ -340,45 +403,15 @@ Through hands-on work with both platforms, I've developed understanding of:
 - [ ] Deploy honeypot for attacker behavior analysis
 
 **Integration:**
-- [ ] Forward Azure AD sign-in logs to Splunk/Wazuh
+- [ ] Forward Azure AD and Okta sign-in logs to Splunk/Wazuh
 - [ ] Create correlation rules between IAM events and network activity
 - [ ] Implement automated account lockout on suspicious activity
 - [ ] Build compliance reporting dashboards (SOX, HIPAA, PCI-DSS)
+- [ ] Deploy identity federation between Azure AD and Okta
 
 ---
+
 ## 📚 Technical Documentation
-
-## 🔄 Multi-Platform IAM Knowledge
-
-### Azure AD vs Okta - Hands-On Comparison
-
-Having implemented both platforms, I understand their complementary strengths:
-
-**Azure AD/Entra ID Strengths:**
-- Native integration with Microsoft 365 and Azure services
-- Hybrid identity with on-premises Active Directory
-- Conditional Access for granular policy control
-- Strong device management capabilities (Intune integration)
-- Cost-effective for Microsoft-centric organizations
-
-**Okta Strengths:**
-- Platform-agnostic (works with any cloud provider)
-- Extensive pre-built application integrations (7000+ apps)
-- Advanced lifecycle management automation
-- Workflow engine for custom provisioning logic
-- Strong API-first architecture for custom integrations
-
-**Common IAM Principles Across Both:**
-- User lifecycle management (Joiner/Mover/Leaver)
-- Group-based RBAC and least privilege
-- MFA and adaptive authentication
-- Policy-based access control
-- Compliance audit support and logging
-- SSO and federation capabilities
-
-This cross-platform experience allows me to recommend the right identity solution based on organizational needs, or support multi-vendor IAM architectures common in large enterprises.
-
----
 
 ### Key Learnings
 
@@ -387,8 +420,10 @@ This cross-platform experience allows me to recommend the right identity solutio
 - Difference between Member and Guest account types in Azure AD
 - Security Groups vs Microsoft 365 Groups (use cases and architecture)
 - Security Defaults vs Conditional Access (capabilities and licensing)
+- Okta Authentication Policies vs Azure Conditional Access
 - Identity lifecycle stages (Joiner/Mover/Leaver)
 - Audit log interpretation for access governance
+- Multi-platform IAM strategy and tool selection criteria
 
 **SIEM Operations:**
 - Log normalization and field extraction
@@ -410,6 +445,10 @@ This cross-platform experience allows me to recommend the right identity solutio
 **Microsoft Azure AD / Entra ID:**
 - [Microsoft Entra ID Documentation](https://learn.microsoft.com/en-us/entra/identity/)
 - [Azure AD Security Operations Guide](https://learn.microsoft.com/en-us/security/)
+
+**Okta:**
+- [Okta Documentation](https://developer.okta.com/docs/)
+- [Okta Best Practices](https://www.okta.com/resources/)
 
 **Wazuh SIEM:**
 - [Wazuh Documentation](https://documentation.wazuh.com/)
@@ -436,11 +475,7 @@ Identity & Access Management Professional | Security Operations | Compliance
 - 🗣️ Bilingual: English & Spanish
 
 **Professional Focus:**  
-Professional Focus: Returning to full-time cybersecurity with 
-specialization in Identity and Access Management. Combining 
-enterprise IAM experience (SAP CUP/GRC, Active Directory, 
-RSA SecurID) with modern cloud platforms (Azure AD/Entra ID, 
-Okta) and current SIEM capabilities (Wazuh, Splunk)...
+Returning to full-time cybersecurity with specialization in Identity and Access Management. Combining enterprise IAM experience (SAP CUP/GRC, Active Directory, RSA SecurID) with modern cloud platforms (Azure AD/Entra ID, Okta) and current SIEM capabilities (Wazuh, Splunk). Strong background in compliance (PCI-DSS, NERC/CIP) and security operations.
 
 **Seeking:** IAM Analyst, IAM Administrator, or Security Engineer roles where I can apply proven identity governance expertise with updated technical skills.
 
@@ -454,3 +489,5 @@ This project is for educational and portfolio demonstration purposes.
 
 **Last Updated:** February 2025  
 **Status:** Active Development
+
+
